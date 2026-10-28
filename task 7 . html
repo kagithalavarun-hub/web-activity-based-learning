@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElectroHub | Electronics Catalog</title>
+
+    <style>
+        /* GENERAL STYLES */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #f4f7fb;
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1250px;
+            margin: auto;
+        }
+
+        /* HEADER */
+        header {
+            background: #0f172a;
+            color: white;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .navbar {
+            min-height: 75px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 27px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        .logo span {
+            color: white;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #e2e8f0;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #38bdf8;
+        }
+
+        .cart {
+            background: #0284c7;
+            color: white;
+            padding: 10px 17px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            padding: 60px 5%;
+            background: linear-gradient(135deg, #0f172a, #075985);
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: slideIn 1s ease;
+        }
+
+        .hero h1 {
+            font-size: clamp(35px, 5vw, 55px);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero p {
+            color: #cbd5e1;
+            margin-bottom: 25px;
+            font-size: 17px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 13px 25px;
+            background: #38bdf8;
+            color: #0f172a;
+            border-radius: 7px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .hero-btn:hover {
+            background: white;
+            transform: translateY(-4px);
+        }
+
+        .hero-image {
+            font-size: 150px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* SEARCH BAR */
+        .search-section {
+            margin: 35px auto;
+            text-align: center;
+        }
+
+        .search-section h2 {
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            max-width: 650px;
+            display: flex;
+            margin: auto;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .search-box button {
+            padding: 0 22px;
+            border: none;
+            background: #0284c7;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* CATEGORY FILTERS */
+        .categories {
+            padding: 25px 0 45px;
+            text-align: center;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #0f172a;
+        }
+
+        .section-title span {
+            color: #0284c7;
+        }
+
+        .category-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .category-filters a {
+            padding: 10px 22px;
+            background: white;
+            border: 1px solid #cbd5e1;
+            border-radius: 25px;
+            transition: 0.3s;
+        }
+
+        .category-filters a:hover {
+            background: #0284c7;
+            color: white;
+            border-color: #0284c7;
+        }
+
+        /* PRODUCT GRID */
+        .products-section {
+            padding: 40px 0 70px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 25px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(15, 23, 42, 0.12);
+        }
+
+        .discount {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ef4444;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+            z-index: 1;
+        }
+
+        .product-image {
+            height: 210px;
+            background: #f1f5f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 90px;
+            transition: 0.4s;
+        }
+
+        .product-card:hover .product-image {
+            background: #e0f2fe;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .category-name {
+            color: #0284c7;
+            font-size: 12px;
+            text-transform: uppercase;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .product-info h3 {
+            margin: 8px 0;
+            font-size: 18px;
+        }
+
+        .rating {
+            color: #f59e0b;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .rating span {
+            color: #64748b;
+        }
+
+        .price {
+            font-size: 23px;
+            font-weight: bold;
+            color: #0284c7;
+        }
+
+        .old-price {
+            font-size: 14px;
+            color: #94a3b8;
+            text-decoration: line-through;
+            margin-left: 5px;
+        }
+
+        .product-specs {
+            list-style: none;
+            margin: 15px 0;
+            font-size: 13px;
+            color: #64748b;
+        }
+
+        .product-specs li {
+            padding: 4px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .product-buttons {
+            display: flex;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-align: center;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: #0284c7;
+            color: white;
+            flex: 1;
+        }
+
+        .btn-primary:hover {
+            background: #0369a1;
+        }
+
+        .btn-secondary {
+            border: 1px solid #0284c7;
+            color: #0284c7;
+        }
+
+        .btn-secondary:hover {
+            background: #e0f2fe;
+        }
+
+        /* PRODUCT DETAILS */
+        .details-section {
+            padding: 70px 0;
+            background: white;
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .details-image {
+            min-height: 350px;
+            background: linear-gradient(135deg, #e0f2fe, #f1f5f9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 15px;
+            font-size: 160px;
+        }
+
+        .details-content h2 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .details-content p {
+            color: #64748b;
+            margin: 15px 0;
+        }
+
+        .details-price {
+            font-size: 32px;
+            color: #0284c7;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .spec-table th,
+        .spec-table td {
+            padding: 12px;
+            border: 1px solid #e2e8f0;
+            text-align: left;
+        }
+
+        .spec-table th {
+            background: #f1f5f9;
+            width: 35%;
+        }
+
+        /* COMPARISON TABLE */
+        .comparison-section {
+            padding: 70px 0;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(15, 23, 42, 0.05);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 750px;
+        }
+
+        .comparison-table th,
+        .comparison-table td {
+            padding: 16px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .comparison-table th {
+            background: #0f172a;
+            color: white;
+        }
+
+        .comparison-table tbody tr:hover {
+            background: #f0f9ff;
+        }
+
+        .comparison-table td:first-child {
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .table-price {
+            color: #0284c7;
+            font-weight: bold;
+        }
+
+        /* FEATURES */
+        .features {
+            padding: 60px 0;
+            background: #e0f2fe;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .feature-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 12px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .feature-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: #64748b;
+        }
+
+        /* NEWSLETTER */
+        .newsletter {
+            padding: 60px 20px;
+            text-align: center;
+            background: #0f172a;
+            color: white;
+        }
+
+        .newsletter h2 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter p {
+            color: #cbd5e1;
+            margin-bottom: 20px;
+        }
+
+        .newsletter-form {
+            display: flex;
+            max-width: 500px;
+            margin: auto;
+            gap: 10px;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 0;
+            padding: 14px;
+            border: none;
+            border-radius: 6px;
+        }
+
+        .newsletter-form button {
+            padding: 14px 20px;
+            background: #38bdf8;
+            color: #0f172a;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #020617;
+            color: #cbd5e1;
+            padding: 45px 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 35px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .footer-column p,
+        .footer-column a {
+            display: block;
+            color: #94a3b8;
+            margin-bottom: 8px;
+            transition: 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: #38bdf8;
+        }
+
+        .copyright {
+            text-align: center;
+            border-top: 1px solid #1e293b;
+            padding-top: 20px;
+            font-size: 14px;
+        }
+
+        /* ANIMATIONS */
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-15px);
+            }
+        }
+
+        /* RESPONSIVE DESIGN */
+        @media (max-width: 1050px) {
+            .product-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .hero-image {
+                font-size: 120px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-wrap: wrap;
+                padding: 15px 0;
+            }
+
+            .nav-links {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding: 45px 6%;
+            }
+
+            .hero-image {
+                font-size: 100px;
+            }
+
+            .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .section-title {
+                font-size: 27px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image {
+                height: 190px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+            }
+
+            .cart {
+                padding: 8px 12px;
+            }
+
+            .search-box button {
+                padding: 0 12px;
+            }
+
+            .details-image {
+                min-height: 250px;
+                font-size: 110px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container navbar">
+            <a href="#home" class="logo">Electro<span>Hub.</span></a>
+
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#categories">Categories</a></li>
+                    <li><a href="#products">Products</a></li>
+                    <li><a href="#details">Specifications</a></li>
+                    <li><a href="#comparison">Compare</a></li>
+                </ul>
+            </nav>
+
+            <a href="#products" class="cart">🛒 Explore Products</a>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Discover the Latest <span>Technology</span></h1>
+
+            <p>
+                Explore laptops, smartphones, accessories, and smart devices
+                in one place. Compare specifications and discover exciting
+                offers on your favorite electronics.
+            </p>
+
+            <a href="#products" class="hero-btn">Explore Products →</a>
+        </div>
+
+        <div class="hero-image">💻📱</div>
+    </section>
+
+    <!-- SEARCH -->
+    <section class="container search-section">
+        <h2>Find Your Favorite Electronics</h2>
+
+        <form class="search-box" action="#products" method="get">
+            <input
+                type="search"
+                name="search"
+                placeholder="Search laptops, smartphones, accessories..."
+                aria-label="Search products"
+            >
+
+            <button type="submit">Search</button>
+        </form>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="container categories" id="categories">
+        <h2 class="section-title">Shop by <span>Category</span></h2>
+
+        <div class="category-filters">
+            <a href="#laptops">💻 Laptops</a>
+            <a href="#smartphones">📱 Smartphones</a>
+            <a href="#accessories">🎧 Accessories</a>
+            <a href="#smart-devices">⌚ Smart Devices</a>
+        </div>
+    </section>
+
+    <!-- PRODUCTS -->
+    <section class="container products-section" id="products">
+        <h2 class="section-title">Featured <span>Products</span></h2>
+
+        <div class="product-grid">
+
+            <!-- LAPTOP 1 -->
+            <article class="product-card" id="laptops">
+                <span class="discount">20% OFF</span>
+
+                <div class="product-image">💻</div>
+
+                <div class="product-info">
+                    <span class="category-name">Laptop</span>
+                    <h3>ASUS VivoBook 15</h3>
+
+                    <div class="rating">★★★★★ <span>(4.5/5)</span></div>
+
+                    <div class="price">
+                        ₹48,990
+                        <span class="old-price">₹61,240</span>
+                    </div>
+
+                    <ul class="product-specs">
+                        <li>Processor: Intel Core i5</li>
+                        <li>RAM: 16GB</li>
+                        <li>Storage: 512GB SSD</li>
+                        <li>Display: 15.6-inch FHD</li>
+                    </ul>
+
+                    <div class="product-buttons">
+                        <a href="#details" class="btn btn-primary">Details</a>
+                        <a href="#comparison" class="btn btn-secondary">Compare</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- LAPTOP 2 -->
+            <article class="product-card">
+                <span class="discount">15% OFF</span>
+
+                <div class="product-image">💻</div>
+
+                <div class="product-info">
+                    <span class="category-name">Laptop</span>
+                    <h3>HP Pavilion 14</h3>
+
+                    <div class="rating">★★★★☆ <span>(4.3/5)</span></div>
+
+                    <div class="price">
+                        ₹55,990
+                        <span class="old-price">₹65,870</span>
+                    </div>
+
+                    <ul class="product-specs">
+                        <li>Processor: Intel Core i5</li>
+                        <li>RAM: 16GB</li>
+                        <li>Storage: 512GB SSD</li>
+                        <li>Display: 14-inch FHD</li>
+                    </ul>
+
+                    <div class="product-buttons">
+                        <a href="#details" class="btn btn-primary">Details</a>
+                        <a href="#comparison" class="btn btn-secondary">Compare</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SMARTPHONE 1 -->
+            <article class="product-card" id="smartphones">
+                <span class="discount">18% OFF</span>
+
+                <div class="product-image">📱</div>
+
+                <div class="product-info">
+                    <span class="category-name">Smartphone</span>
+                    <h3>Samsung Galaxy A55</h3>
+
+                    <div class="rating">★★★★★ <span>(4.6/5)</span></div>
+
+                    <div class="price">
+                        ₹32,999
+                        <span class="old-price">₹39,999</span>
+                    </div>
+
+                    <ul class="product-specs">
+                        <li>Display: 6.6-inch AMOLED</li>
+                        <li>RAM: 8GB</li>
+                        <li>Storage: 128GB</li>
+                        <li>Camera: 50MP main</li>
+                    </ul>
+
+                    <div class="product-buttons">
+                        <a href="#details" class="btn btn-primary">Details</a>
+                        <a href="#comparison" class="btn btn-secondary">Compare</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SMARTPHONE 2 -->
+            <article class="product-card">
+                <span class="discount">10% OFF</span>
+
+                <div class="product-image">📱</div>
+
+                <div class="product-info">
+                    <span class="category-name">Smartphone</span>
+                    <h3>OnePlus Nord CE</h3>
+
+                    <div class="rating">★★★★☆ <span>(4.4/5)</span></div>
+
+                    <div class="price">
+                        ₹24,999
+                        <span class="old-price">₹27,999</span>
+                    </div>
+
+                    <ul class="product-specs">
+                        <li>Display: AMOLED</li>
+                        <li>RAM: 8GB</li>
+                        <li>Storage: 128GB</li>
+                        <li>Fast charging support</li>
+                    </ul>
+
+                    <div class="product-buttons">
+                        <a href="#details" class="btn btn-primary">Details</a>
+                        <a href="#comparison" class="btn btn-secondary">Compare</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- HEADPHONES -->
+            <article class="product-card" id="accessories">
+                <span class="discount">25% OFF</span>
+
+                <div class="product-image">🎧</div>
+
+                <div class="product-info">
+                    <span class="category-name">Accessories</span>
+                    <h3>Wireless Headphones</h3>
+
+                    <div class="rating">★★★★★ <span>(4.5/5)</span></div>
+
+                    <div class="price">
+                        ₹2,999
+                        <span class="old-price">₹3,999</span>
+                    </div>
+
+                    <ul class="product-specs">
+                        <li>Connection: Bluetooth</li>
+                        <li>Battery: Up to 30 hours</li>
+                        <li>Microphone: Built-in</li>
+                        <li>Charging: USB-C</li>
+                    </ul>
+
+                    <div class="product-buttons">
+                        <a href="#details" class="btn btn-primary">Details</a>
+                        <a href="#comparison" class="btn btn-secondary">Compare</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- KEYBOARD -->
+            <article class="product-card">
+                <span class="discount">12% OFF</span>
+
+                <div class="product-image">⌨️</div>
+
+                <div class="product-info">
+                    <span class="category-name">Accessories</span>
+                    <h3>Mechanical Keyboard</h3>
+
+                    <div class="rating">★★★★☆ <span>(4.2/5)</span></div>
+
+                    <div class="price">
+                        ₹3,499
+                        <span class="old-price">₹3,999</span>
+                    </div>
+
+                    <ul class="product-specs">
+                        <li>Type: Mechanical</li>
+                        <li>Connection: USB</li>
+                        <li>Lighting: RGB</li>
+                        <li>Layout: Full-size</li>
+                    </ul>
+
+                    <div class="product-buttons">
+                        <a href="#details" class="btn btn-primary">Details</a>
+                        <a href="#comparison" class="btn btn-secondary">Compare</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SMARTWATCH -->
+            <article class="product-card" id="smart-devices">
+                <span class="discount">20% OFF</span>
+
+                <div class="product-image">⌚</div>
+
+                <div class="product-info">
+                    <span class="category-name">Smart Device</span>
+                    <h3>Smart Fitness Watch</h3>
+
+                    <div class="rating">★★★★☆ <span>(4.3/5)</span></div>
+
+                    <div class="price">
+                        ₹3,999
+                        <span class="old-price">₹4,999</span>
+                    </div>
+
+                    <ul class="product-specs">
+                        <li>Display: Touchscreen</li>
+                        <li>Features: Activity tracking</li>
+                        <li>Connectivity: Bluetooth</li>
+                        <li>Water resistance: Model dependent</li>
+                    </ul>
+
+                    <div class="product-buttons">
+                        <a href="#details" class="btn btn-primary">Details</a>
+                        <a href="#comparison" class="btn btn-secondary">Compare</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- SMART SPEAKER -->
+            <article class="product-card">
+                <span class="discount">15% OFF</span>
+
+                <div class="product-image">🔊</div>
+
+                <div class="product-info">
+                    <span class="category-name">Smart Device</span>
+                    <h3>Smart Bluetooth Speaker</h3>
+
+                    <div class="rating">★★★★☆ <span>(4.1/5)</span></div>
+
+                    <div class="price">
+                        ₹1,699
+                        <span class="old-price">₹1,999</span>
+                    </div>
+
+                    <ul class="product-specs">
+                        <li>Connection: Bluetooth</li>
+                        <li>Audio: Stereo sound</li>
+                        <li>Battery: Rechargeable</li>
+                        <li>Port: USB-C</li>
+                    </ul>
+
+                    <div class="product-buttons">
+                        <a href="#details" class="btn btn-primary">Details</a>
+                        <a href="#comparison" class="btn btn-secondary">Compare</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </section>
+
+    <!-- PRODUCT DETAILS -->
+    <section class="details-section" id="details">
+        <div class="container">
+            <h2 class="section-title">Product <span>Details</span></h2>
+
+            <div class="details-grid">
+                <div class="details-image">💻</div>
+
+                <div class="details-content">
+                    <span class="category-name">Featured Laptop</span>
+
+                    <h2>ASUS VivoBook 15</h2>
+
+                    <div class="rating">★★★★★ <span>Customer rating: 4.5/5</span></div>
+
+                    <p>
+                        A laptop designed for everyday productivity,
+                        college assignments, browsing, programming,
+                        and entertainment.
+                    </p>
+
+                    <div class="details-price">
+                        ₹48,990
+                        <span class="old-price">₹61,240</span>
+                    </div>
+
+                    <table class="spec-table">
+                        <tr>
+                            <th>Processor</th>
+                            <td>Intel Core i5</td>
+                        </tr>
+
+                        <tr>
+                            <th>Memory</th>
+                            <td>16GB RAM</td>
+                        </tr>
+
+                        <tr>
+                            <th>Storage</th>
+                            <td>512GB SSD</td>
+                        </tr>
+
+                        <tr>
+                            <th>Display</th>
+                            <td>15.6-inch Full HD</td>
+                        </tr>
+
+                        <tr>
+                            <th>Operating System</th>
+                            <td>Depends on configuration</td>
+                        </tr>
+
+                        <tr>
+                            <th>Warranty</th>
+                            <td>Check seller terms</td>
+                        </tr>
+                    </table>
+
+                    <a href="#comparison" class="btn btn-primary">
+                        Compare Specifications
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRODUCT COMPARISON -->
+    <section class="comparison-section" id="comparison">
+        <div class="container">
+            <h2 class="section-title">Compare <span>Products</span></h2>
+
+            <div class="table-container">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Specifications</th>
+                            <th>ASUS VivoBook 15</th>
+                            <th>HP Pavilion 14</th>
+                            <th>Samsung Galaxy A55</th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <tr>
+                            <td>Category</td>
+                            <td>Laptop</td>
+                            <td>Laptop</td>
+                            <td>Smartphone</td>
+                        </tr>
+
+                        <tr>
+                            <td>Processor</td>
+                            <td>Intel Core i5</td>
+                            <td>Intel Core i5</td>
+                            <td>Exynos series</td>
+                        </tr>
+
+                        <tr>
+                            <td>RAM</td>
+                            <td>16GB</td>
+                            <td>16GB</td>
+                            <td>8GB</td>
+                        </tr>
+
+                        <tr>
+                            <td>Storage</td>
+                            <td>512GB SSD</td>
+                            <td>512GB SSD</td>
+                            <td>128GB</td>
+                        </tr>
+
+                        <tr>
+                            <td>Display</td>
+                            <td>15.6-inch FHD</td>
+                            <td>14-inch FHD</td>
+                            <td>6.6-inch AMOLED</td>
+                        </tr>
+
+                        <tr>
+                            <td>Discount</td>
+                            <td>20%</td>
+                            <td>15%</td>
+                            <td>18%</td>
+                        </tr>
+
+                        <tr>
+                            <td>Price</td>
+                            <td class="table-price">₹48,990</td>
+                            <td class="table-price">₹55,990</td>
+                            <td class="table-price">₹32,999</td>
+                        </tr>
+
+                        <tr>
+                            <td>View Product</td>
+                            <td><a href="#details" class="btn btn-primary">View</a></td>
+                            <td><a href="#details" class="btn btn-primary">View</a></td>
+                            <td><a href="#details" class="btn btn-primary">View</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHY CHOOSE US -->
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">Why Choose <span>ElectroHub?</span></h2>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Great Offers</h3>
+                    <p>
+                        Browse discounted products and compare listed prices
+                        to find an option that fits your budget.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">📋</div>
+                    <h3>Easy Comparison</h3>
+                    <p>
+                        Compare specifications, product features,
+                        and prices in a simple table.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">💻</div>
+                    <h3>Multiple Categories</h3>
+                    <p>
+                        Explore laptops, smartphones, accessories,
+                        and smart devices in one catalog.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWSLETTER -->
+    <section class="newsletter">
+        <h2>Stay Updated with New Technology</h2>
+
+        <p>
+            Explore new products, latest gadgets, and special offers.
+        </p>
+
+        <form class="newsletter-form" action="#home" method="get">
+            <input
+                type="email"
+                name="email"
+                placeholder="Enter your email address"
+                aria-label="Email address"
+                required
+            >
+
+            <button type="submit">Subscribe</button>
+        </form>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3 class="logo">ElectroHub.</h3>
+
+                    <p>
+                        Your electronics catalog for exploring laptops,
+                        smartphones, accessories, and smart devices.
+                    </p>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#categories">Categories</a>
+                    <a href="#products">Products</a>
+                    <a href="#comparison">Comparison</a>
+                </div>
+
+                <div class="footer-column">
+                    <h3>Categories</h3>
+                    <a href="#laptops">Laptops</a>
+                    <a href="#smartphones">Smartphones</a>
+                    <a href="#accessories">Accessories</a>
+                    <a href="#smart-devices">Smart Devices</a>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>
+                    &copy; 2026 ElectroHub. Electronics Catalog Project.
+                </p>
+                <p>
+                    Demo catalog only. Product prices and discounts
+                    are illustrative and are not live offers.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
